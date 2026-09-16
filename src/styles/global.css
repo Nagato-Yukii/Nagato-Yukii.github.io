@@ -219,15 +219,6 @@ a:focus-visible {
   font-size: 1.05rem;
 }
 
-.bio {
-  max-width: 650px;
-  margin: 0 0 0.7rem;
-  color: var(--body);
-  font-size: 0.95rem;
-  line-height: 1.75;
-}
-
-.interest-list,
 .tag-list,
 .note-list,
 .link-cards {
@@ -236,14 +227,6 @@ a:focus-visible {
   list-style: none;
 }
 
-.interest-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 0.8rem;
-}
-
-.interest-list li,
 .tag-list li {
   border-radius: 999px;
   background: var(--accent-soft);
@@ -251,10 +234,6 @@ a:focus-visible {
   font-size: 0.76rem;
   font-weight: 600;
   line-height: 1;
-}
-
-.interest-list li {
-  padding: 0.45rem 0.75rem;
 }
 
 .social-row {
@@ -913,11 +892,6 @@ a:focus-visible {
     margin: 0 auto;
   }
 
-  .bio {
-    margin-inline: auto;
-  }
-
-  .interest-list,
   .social-row {
     justify-content: center;
   }

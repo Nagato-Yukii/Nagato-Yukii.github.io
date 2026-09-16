@@ -43,11 +43,7 @@ const formatDate = (date: Date, precision: "day" | "month") =>
       />
       <div class="profile-copy">
         <h1 id="profile-name">{site.name}</h1>
-        <p class="role">{site.role} · {site.location}</p>
-        <p class="bio">{site.intro}</p>
-        <ul class="interest-list" aria-label="Areas of interest">
-          {site.interests.map((interest) => <li>{interest}</li>)}
-        </ul>
+        <p class="role">{site.tagline}</p>
         <div class="social-row" aria-label="Social profiles">
           {site.links.map((link) =>
             link.href ? (
