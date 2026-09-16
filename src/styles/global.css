@@ -558,13 +558,14 @@ a:focus-visible {
 
 .game-list {
   display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
 }
 
 .game-card {
-  min-height: 220px;
-  display: grid;
-  grid-template-columns: minmax(220px, 42%) minmax(0, 1fr);
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 10px;
@@ -575,35 +576,32 @@ a:focus-visible {
 .game-card img {
   display: block;
   width: 100%;
-  height: 100%;
-  min-height: 220px;
+  height: auto;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
 }
 
 .game-copy {
+  flex: 1;
   display: flex;
   min-width: 0;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1.35rem;
+  gap: 0.8rem;
+  padding: 0.8rem 0.85rem;
 }
 
 .game-copy h3 {
   margin: 0;
   color: var(--text);
-  font-size: 1.25rem;
-}
-
-.game-copy p {
-  margin: 0.25rem 0 0;
-  color: var(--muted);
-  font-size: 0.84rem;
+  font-size: 0.88rem;
+  line-height: 1.45;
 }
 
 .game-copy time {
   align-self: flex-end;
   color: var(--muted);
-  font-size: 0.76rem;
+  font-size: 0.72rem;
   font-variant-numeric: tabular-nums;
 }
 
@@ -628,8 +626,7 @@ a:focus-visible {
 
 .more-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 3rem;
+  grid-template-columns: minmax(0, 620px);
 }
 
 .more-grid h3 {
@@ -689,6 +686,16 @@ a:focus-visible {
 
 .footer p {
   margin: 0;
+}
+
+.footer a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.footer a:hover {
+  color: var(--accent);
 }
 
 .article-wrap {
@@ -908,6 +915,10 @@ a:focus-visible {
   .projects-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .game-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 560px) {
@@ -949,21 +960,12 @@ a:focus-visible {
     font-size: 0.72rem;
   }
 
-  .game-card {
-    min-height: 165px;
-    grid-template-columns: 43% minmax(0, 1fr);
-  }
-
-  .game-card img {
-    min-height: 165px;
-  }
-
   .game-copy {
-    padding: 1rem;
+    padding: 0.75rem;
   }
 
   .game-copy h3 {
-    font-size: 1.05rem;
+    font-size: 0.82rem;
   }
 
   .article-nav > div:last-child {

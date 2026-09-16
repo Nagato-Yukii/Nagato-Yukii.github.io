@@ -82,10 +82,24 @@ export const site = {
   ],
   games: [
     {
-      title: "素晴日",
-      subtitle: "Wonderful Everyday: Down the Rabbit-Hole",
-      image: "/game-subahibi.jpg",
-      finished: "Date to add",
+      title: "我们的回忆",
+      image: "/game-our-memories.png",
+      finished: "2016",
+    },
+    {
+      title: "素晴らしき日々 〜不連続存在〜（Wonderful Everyday）",
+      image: "/game-subahibi-poster.png",
+      finished: "2026.2",
+    },
+    {
+      title: "Saya no Uta: The Song of Saya",
+      image: "/game-saya-no-uta.png",
+      finished: "2026.3",
+    },
+    {
+      title: "架向星空之桥",
+      image: "/game-hoshizora-no-hashi.png",
+      finished: "2020.6",
     },
   ],
 } as const;

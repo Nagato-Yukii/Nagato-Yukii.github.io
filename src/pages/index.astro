@@ -165,13 +165,10 @@ const formatDate = (date: Date, precision: "day" | "month") =>
       <div class="game-list">
         {site.games.map((game) => (
           <article class="game-card">
-            <img src={game.image} alt={`A scene from ${game.title}`} width="560" height="315" loading="lazy" />
+            <img src={game.image} alt={`${game.title} artwork`} width="640" height="480" loading="lazy" />
             <div class="game-copy">
-              <div>
-                <h3>{game.title}</h3>
-                <p>{game.subtitle}</p>
-              </div>
-              <time>Finished · {game.finished}</time>
+              <h3>{game.title}</h3>
+              <time>{game.finished}</time>
             </div>
           </article>
         ))}
@@ -184,10 +181,6 @@ const formatDate = (date: Date, precision: "day" | "month") =>
       </div>
       <div class="more-grid">
         <div>
-          <h3>About this site</h3>
-          <p>A personal archive for robotics projects, papers, games, and notes.</p>
-        </div>
-        <div>
           <h3>Still to come</h3>
           <p>Contact details, a CV, awards, or anything else that does not fit above.</p>
         </div>
@@ -195,7 +188,10 @@ const formatDate = (date: Date, precision: "day" | "month") =>
     </section>
 
     <footer class="footer">
-      <p>© {new Date().getUTCFullYear()} {site.name} · Built with care</p>
+      <p>
+        © {new Date().getUTCFullYear()} {site.name} · Built with care · Code adapted with reference to
+        <a href="https://github.com/Kashu7100/kashu7100.github.io" target="_blank" rel="noreferrer">Kashu7100</a>
+      </p>
     </footer>
   </div>
 
