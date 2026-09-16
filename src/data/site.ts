@@ -38,6 +38,7 @@ export const site = {
       description:
         "A full reinforcement-learning training and deployment pipeline for the X2Ultra robot.",
       href: "https://github.com/Nagato-Yukii/Unity-RL-Playground-X2Ultra",
+      image: "/project-unity-x2.png",
       tags: ["Robot Learning", "Unity", "Deployment"],
     },
     {
@@ -45,6 +46,7 @@ export const site = {
       description:
         "Training workflows for X2Ultra in Isaac Lab, adapted from the unitree reinforcement-learning ecosystem.",
       href: "https://github.com/Nagato-Yukii/X2ULTRA_RL_ISAACLAB",
+      image: "/project-isaac-x2.png",
       tags: ["Isaac Lab", "Reinforcement Learning"],
     },
     {
@@ -52,6 +54,7 @@ export const site = {
       description:
         "An InstinctLab adaptation for Agibot X2 hiking, parkour, and whole-body control tasks.",
       href: "https://github.com/Nagato-Yukii/agibot_x2_hiking_in_the_wild",
+      image: "/project-hiking-x2.png",
       tags: ["Humanoid", "Simulation", "Parkour"],
     },
   ],

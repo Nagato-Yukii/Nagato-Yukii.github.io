@@ -393,14 +393,40 @@ a:focus-visible {
 }
 
 .project-card {
-  min-height: 230px;
   display: flex;
   flex-direction: column;
-  padding: 1.2rem;
+  overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 10px;
   background: var(--surface);
   box-shadow: var(--shadow);
+}
+
+.project-media {
+  display: block;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background: #f2f4f5;
+}
+
+.project-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+}
+
+.project-card:hover .project-media img {
+  transform: scale(1.02);
+}
+
+.project-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1.05rem 1.1rem 1.1rem;
 }
 
 .project-number {
@@ -411,7 +437,7 @@ a:focus-visible {
 }
 
 .project-card h3 {
-  margin: 1.5rem 0 0.65rem;
+  margin: 0.75rem 0 0.55rem;
   font-size: 1rem;
   line-height: 1.4;
 }

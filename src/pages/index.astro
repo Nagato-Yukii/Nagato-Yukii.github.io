@@ -91,12 +91,17 @@ const formatDate = (date: Date) =>
       <div class="projects-grid">
         {site.projects.map((project, index) => (
           <article class="project-card">
-            <span class="project-number" aria-hidden="true">0{index + 1}</span>
-            <h3><a href={project.href} target="_blank" rel="noreferrer">{project.title}</a></h3>
-            <p>{project.description}</p>
-            <ul class="tag-list" aria-label="Project tags">
-              {project.tags.map((tag) => <li>{tag}</li>)}
-            </ul>
+            <a class="project-media" href={project.href} target="_blank" rel="noreferrer" tabindex="-1" aria-hidden="true">
+              <img src={project.image} alt="" width="1200" height="600" loading="lazy" />
+            </a>
+            <div class="project-body">
+              <span class="project-number" aria-hidden="true">0{index + 1}</span>
+              <h3><a href={project.href} target="_blank" rel="noreferrer">{project.title}</a></h3>
+              <p>{project.description}</p>
+              <ul class="tag-list" aria-label="Project tags">
+                {project.tags.map((tag) => <li>{tag}</li>)}
+              </ul>
+            </div>
           </article>
         ))}
       </div>
