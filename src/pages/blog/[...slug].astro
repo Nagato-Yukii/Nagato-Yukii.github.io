@@ -28,7 +28,7 @@ const { post, newer, older } = Astro.props;
 const { Content } = await render(post);
 const displayDate = post.data.date.toLocaleDateString("en-US", {
   month: "long",
-  day: "numeric",
+  ...(post.data.datePrecision === "day" ? { day: "numeric" as const } : {}),
   year: "numeric",
   timeZone: "UTC",
 });

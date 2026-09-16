@@ -12,22 +12,26 @@ export const site = {
   avatar: "https://github.com/Nagato-Yukii.png?size=320",
   links: [
     {
-      label: "github",
+      label: "GitHub",
+      icon: "github",
       display: "github.com/Nagato-Yukii",
       href: "https://github.com/Nagato-Yukii",
     },
     {
-      label: "zhihu",
+      label: "Zhihu",
+      icon: "zhihu",
       display: "zhihu.com/people/68-26-21-58",
       href: "https://www.zhihu.com/people/68-26-21-58/posts",
     },
     {
-      label: "email",
+      label: "Email",
+      icon: "google",
       display: "onjifang@gmail.com",
       href: "mailto:onjifang@gmail.com",
     },
     {
-      label: "bilibili",
+      label: "Bilibili",
+      icon: "bilibili",
       display: "space.bilibili.com/512933916",
       href: "https://space.bilibili.com/512933916",
     },
@@ -65,7 +69,19 @@ export const site = {
       authors: "Zhipeng Xu, Kaixuan Chen, Linqi Ye, Boyang Xing",
       venue: "ICIRA 2025",
       pdf: "https://linqi-ye.github.io/docs/WBC_Instrucition.pdf",
+      code: null,
       image: "/publication-wbc.png",
+      imageAlt: "Humanoid whole-body motions demonstrated in simulation",
+    },
+    {
+      title:
+        "Web-Gewu: A Browser-Based Interactive Playground for Robot Reinforcement Learning",
+      authors: "Kaixuan Chen, Linqi Ye",
+      venue: "SMC 2026",
+      pdf: "https://linqi-ye.github.io/docs/web-gewu.pdf",
+      code: "https://github.com/Nagato-Yukii/WebGewu",
+      image: "/publication-web-gewu.png",
+      imageAlt: "Web-Gewu browser-based robot reinforcement learning playground",
     },
   ],
   games: [
