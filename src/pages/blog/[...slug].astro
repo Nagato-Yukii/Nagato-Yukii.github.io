@@ -1,6 +1,7 @@
 ---
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { site } from "../../data/site";
 
 export async function getStaticPaths() {
   const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
@@ -25,10 +26,12 @@ interface Props {
 
 const { post, newer, older } = Astro.props;
 const { Content } = await render(post);
-const displayDate = post.data.date
-  .toISOString()
-  .slice(0, 10)
-  .replaceAll("-", ".");
+const displayDate = post.data.date.toLocaleDateString("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "UTC",
+});
 ---
 
 <BaseLayout
@@ -37,36 +40,43 @@ const displayDate = post.data.date
   canonicalPath={`/blog/${post.id}/`}
   type="article"
 >
-  <header class="article-header">
-    <a class="back-link" href="/">&lt;- cd /home</a>
-    <p class="file-path">cat ./notes/{post.id}.md</p>
-    <time datetime={post.data.date.toISOString()}>{displayDate}</time>
-    <h1>{post.data.title}</h1>
-    <p class="article-summary">{post.data.summary}</p>
-    {post.data.tags.length > 0 && (
-      <ul class="tag-list" aria-label="Tags">
-        {post.data.tags.map((tag) => <li>#{tag}</li>)}
-      </ul>
-    )}
+  <header class="site-header">
+    <nav class="nav-wrap" aria-label="Primary navigation">
+      <a class="brand" href="/">Nagato <span>Yukii</span></a>
+      <a class="back-link" href="/#notes">← All notes</a>
+    </nav>
   </header>
 
-  <article class="prose">
-    <Content />
-  </article>
+  <div class="article-wrap">
+    <header class="article-header">
+      <time datetime={post.data.date.toISOString()}>{displayDate}</time>
+      <h1>{post.data.title}</h1>
+      <p class="article-summary">{post.data.summary}</p>
+      {post.data.tags.length > 0 && (
+        <ul class="tag-list" aria-label="Tags">
+          {post.data.tags.map((tag) => <li>{tag}</li>)}
+        </ul>
+      )}
+    </header>
 
-  <nav class="article-nav" aria-label="Article navigation">
-    <div>
-      <span>newer file</span>
-      {newer ? <a href={`/blog/${newer.id}/`}>← {newer.data.title}</a> : <em>none</em>}
-    </div>
-    <div>
-      <span>older file</span>
-      {older ? <a href={`/blog/${older.id}/`}>{older.data.title} →</a> : <em>none</em>}
-    </div>
-  </nav>
+    <article class="prose">
+      <Content />
+    </article>
 
-  <footer class="footer">
-    <a href="/">[ index ]</a>
-    <span aria-hidden="true">EOF</span>
-  </footer>
+    <nav class="article-nav" aria-label="Article navigation">
+      <div>
+        <span>Newer note</span>
+        {newer ? <a href={`/blog/${newer.id}/`}>← {newer.data.title}</a> : <em>None yet</em>}
+      </div>
+      <div>
+        <span>Older note</span>
+        {older ? <a href={`/blog/${older.id}/`}>{older.data.title} →</a> : <em>This is the first one</em>}
+      </div>
+    </nav>
+
+    <footer class="footer">
+      <p>© {new Date().getUTCFullYear()} {site.name}</p>
+      <a href="/#notes">Back to notes</a>
+    </footer>
+  </div>
 </BaseLayout>

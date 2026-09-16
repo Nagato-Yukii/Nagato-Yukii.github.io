@@ -1,9 +1,15 @@
 export const site = {
   name: "Nagato-Yukii",
   handle: "nagato-yukii",
-  description: "A small directory of links, notes, and work in progress.",
+  description: "Robotics, reinforcement learning, and notes from the workbench.",
+  role: "Robotics Engineering Student",
+  location: "Shanghai, China",
   intro:
-    "Personal links and field notes, kept deliberately small and readable.",
+    "I am an undergraduate student interested in robotics, reinforcement learning, simulation, and the small details that make systems work in the real world.",
+  note:
+    "This site is a home for project notes, experiments, and ideas that are still taking shape.",
+  interests: ["Robotics", "Reinforcement Learning", "Simulation"],
+  avatar: "https://github.com/Nagato-Yukii.png?size=320",
   links: [
     {
       label: "github",
@@ -11,18 +17,18 @@ export const site = {
       href: "https://github.com/Nagato-Yukii",
     },
     {
-      label: "email",
-      display: "not configured",
-      href: null,
-    },
-    {
       label: "zhihu",
-      display: "not configured",
+      display: "zhihu.com/people/68-26-21-58",
+      href: "https://www.zhihu.com/people/68-26-21-58/posts",
+    },
+    {
+      label: "email",
+      display: "add your address",
       href: null,
     },
     {
-      label: "elsewhere",
-      display: "add another platform",
+      label: "linkedin",
+      display: "add your profile",
       href: null,
     },
   ],
