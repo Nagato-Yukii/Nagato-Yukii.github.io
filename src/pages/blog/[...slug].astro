@@ -1,0 +1,72 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+  );
+
+  return posts.map((post, index) => ({
+    params: { slug: post.id },
+    props: {
+      post,
+      newer: posts[index - 1] ?? null,
+      older: posts[index + 1] ?? null,
+    },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<"blog">;
+  newer: CollectionEntry<"blog"> | null;
+  older: CollectionEntry<"blog"> | null;
+}
+
+const { post, newer, older } = Astro.props;
+const { Content } = await render(post);
+const displayDate = post.data.date
+  .toISOString()
+  .slice(0, 10)
+  .replaceAll("-", ".");
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.summary}
+  canonicalPath={`/blog/${post.id}/`}
+  type="article"
+>
+  <header class="article-header">
+    <a class="back-link" href="/">&lt;- cd /home</a>
+    <p class="file-path">cat ./notes/{post.id}.md</p>
+    <time datetime={post.data.date.toISOString()}>{displayDate}</time>
+    <h1>{post.data.title}</h1>
+    <p class="article-summary">{post.data.summary}</p>
+    {post.data.tags.length > 0 && (
+      <ul class="tag-list" aria-label="Tags">
+        {post.data.tags.map((tag) => <li>#{tag}</li>)}
+      </ul>
+    )}
+  </header>
+
+  <article class="prose">
+    <Content />
+  </article>
+
+  <nav class="article-nav" aria-label="Article navigation">
+    <div>
+      <span>newer file</span>
+      {newer ? <a href={`/blog/${newer.id}/`}>← {newer.data.title}</a> : <em>none</em>}
+    </div>
+    <div>
+      <span>older file</span>
+      {older ? <a href={`/blog/${older.id}/`}>{older.data.title} →</a> : <em>none</em>}
+    </div>
+  </nav>
+
+  <footer class="footer">
+    <a href="/">[ index ]</a>
+    <span aria-hidden="true">EOF</span>
+  </footer>
+</BaseLayout>
