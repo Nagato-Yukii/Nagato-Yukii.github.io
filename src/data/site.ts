@@ -62,6 +62,7 @@ export const site = {
       authors: "Zhipeng Xu, Kaixuan Chen, Linqi Ye, Boyang Xing",
       venue: "ICIRA 2025",
       pdf: "https://linqi-ye.github.io/docs/WBC_Instrucition.pdf",
+      image: "/publication-wbc.png",
     },
   ],
   games: [

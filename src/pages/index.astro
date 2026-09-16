@@ -109,12 +109,21 @@ const formatDate = (date: Date) =>
       <ol class="publication-list">
         {site.publications.map((publication) => (
           <li>
-            <div>
+            <img
+              src={publication.image}
+              alt="Humanoid whole-body motions demonstrated in simulation"
+              width="502"
+              height="383"
+              loading="lazy"
+            />
+            <div class="publication-copy">
               <h3>{publication.title}</h3>
               <p>{publication.authors}</p>
-              <span>{publication.venue}</span>
+              <div class="publication-meta">
+                <span>{publication.venue}</span>
+                <a href={publication.pdf} target="_blank" rel="noreferrer" aria-label={`PDF: ${publication.title}`}>PDF</a>
+              </div>
             </div>
-            <a href={publication.pdf} target="_blank" rel="noreferrer" aria-label={`PDF: ${publication.title}`}>PDF</a>
           </li>
         ))}
       </ol>
