@@ -1,5 +1,5 @@
 export const site = {
-  name: "Nagato-Yukii",
+  name: "Kaixuan Chen",
   handle: "nagato-yukii",
   description: "Robotics, reinforcement learning, and notes from the workbench.",
   role: "Robotics Engineering Student",
@@ -27,9 +27,32 @@ export const site = {
       href: null,
     },
     {
-      label: "linkedin",
-      display: "add your profile",
+      label: "bilibili",
+      display: "add your bilibili profile",
       href: null,
+    },
+  ],
+  projects: [
+    {
+      title: "Unity-RL-Playground-X2Ultra",
+      description:
+        "A full reinforcement-learning training and deployment pipeline for the X2Ultra robot.",
+      href: "https://github.com/Nagato-Yukii/Unity-RL-Playground-X2Ultra",
+      tags: ["Robot Learning", "Unity", "Deployment"],
+    },
+    {
+      title: "X2ULTRA RL · Isaac Lab",
+      description:
+        "Training workflows for X2Ultra in Isaac Lab, adapted from the unitree reinforcement-learning ecosystem.",
+      href: "https://github.com/Nagato-Yukii/X2ULTRA_RL_ISAACLAB",
+      tags: ["Isaac Lab", "Reinforcement Learning"],
+    },
+    {
+      title: "Agibot X2 · Hiking in the Wild",
+      description:
+        "An InstinctLab adaptation for Agibot X2 hiking, parkour, and whole-body control tasks.",
+      href: "https://github.com/Nagato-Yukii/agibot_x2_hiking_in_the_wild",
+      tags: ["Humanoid", "Simulation", "Parkour"],
     },
   ],
 } as const;
