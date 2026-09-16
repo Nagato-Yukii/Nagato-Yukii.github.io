@@ -23,13 +23,13 @@ export const site = {
     },
     {
       label: "email",
-      display: "add your address",
-      href: null,
+      display: "onjifang@gmail.com",
+      href: "mailto:onjifang@gmail.com",
     },
     {
       label: "bilibili",
-      display: "add your bilibili profile",
-      href: null,
+      display: "space.bilibili.com/512933916",
+      href: "https://space.bilibili.com/512933916",
     },
   ],
   projects: [
@@ -53,6 +53,23 @@ export const site = {
         "An InstinctLab adaptation for Agibot X2 hiking, parkour, and whole-body control tasks.",
       href: "https://github.com/Nagato-Yukii/agibot_x2_hiking_in_the_wild",
       tags: ["Humanoid", "Simulation", "Parkour"],
+    },
+  ],
+  publications: [
+    {
+      title:
+        "Learning Whole-body Motion Control through Instruction Learning and Human Motion Data",
+      authors: "Zhipeng Xu, Kaixuan Chen, Linqi Ye, Boyang Xing",
+      venue: "ICIRA 2025",
+      pdf: "https://linqi-ye.github.io/docs/WBC_Instrucition.pdf",
+    },
+  ],
+  games: [
+    {
+      title: "素晴日",
+      subtitle: "Wonderful Everyday: Down the Rabbit-Hole",
+      image: "/game-subahibi.jpg",
+      finished: "Date to add",
     },
   ],
 } as const;

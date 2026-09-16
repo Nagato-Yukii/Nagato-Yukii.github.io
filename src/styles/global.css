@@ -436,6 +436,112 @@ a:focus-visible {
   padding-top: 1rem;
 }
 
+.publication-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.publication-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid #eceeee;
+  border-bottom: 1px solid #eceeee;
+}
+
+.publication-list h3 {
+  max-width: 720px;
+  margin: 0 0 0.35rem;
+  color: var(--text);
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.publication-list p {
+  margin: 0;
+  color: var(--body);
+  font-size: 0.84rem;
+}
+
+.publication-list span {
+  display: inline-block;
+  margin-top: 0.2rem;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.publication-list a {
+  flex: 0 0 auto;
+  padding: 0.3rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--body);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.publication-list a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.game-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.game-card {
+  min-height: 220px;
+  display: grid;
+  grid-template-columns: minmax(220px, 42%) minmax(0, 1fr);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.game-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  object-fit: cover;
+}
+
+.game-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.35rem;
+}
+
+.game-copy h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.25rem;
+}
+
+.game-copy p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.game-copy time {
+  align-self: flex-end;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-variant-numeric: tabular-nums;
+}
+
 .section-empty {
   padding: 1.6rem;
   border: 1px dashed #cbd1d3;
@@ -764,6 +870,27 @@ a:focus-visible {
   .projects-grid,
   .more-grid {
     grid-template-columns: 1fr;
+  }
+
+  .publication-list li {
+    align-items: flex-start;
+  }
+
+  .game-card {
+    min-height: 165px;
+    grid-template-columns: 43% minmax(0, 1fr);
+  }
+
+  .game-card img {
+    min-height: 165px;
+  }
+
+  .game-copy {
+    padding: 1rem;
+  }
+
+  .game-copy h3 {
+    font-size: 1.05rem;
   }
 
   .article-nav > div:last-child {

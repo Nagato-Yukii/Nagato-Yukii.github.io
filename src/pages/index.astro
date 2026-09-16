@@ -106,19 +106,37 @@ const formatDate = (date: Date) =>
       <div class="section-heading">
         <h2 id="publications-heading">Publications</h2>
       </div>
-      <div class="section-empty">
-        <p>No publications added yet.</p>
-        <span>This section is ready for papers, reports, and preprints.</span>
-      </div>
+      <ol class="publication-list">
+        {site.publications.map((publication) => (
+          <li>
+            <div>
+              <h3>{publication.title}</h3>
+              <p>{publication.authors}</p>
+              <span>{publication.venue}</span>
+            </div>
+            <a href={publication.pdf} target="_blank" rel="noreferrer" aria-label={`PDF: ${publication.title}`}>PDF</a>
+          </li>
+        ))}
+      </ol>
     </section>
 
     <section id="games" class="section-block" aria-labelledby="games-heading">
       <div class="section-heading">
         <h2 id="games-heading">Games Played</h2>
       </div>
-      <div class="section-empty">
-        <p>No games added yet.</p>
-        <span>Add a title, platform, year, and a short note for each game.</span>
+      <div class="game-list">
+        {site.games.map((game) => (
+          <article class="game-card">
+            <img src={game.image} alt={`A scene from ${game.title}`} width="560" height="315" loading="lazy" />
+            <div class="game-copy">
+              <div>
+                <h3>{game.title}</h3>
+                <p>{game.subtitle}</p>
+              </div>
+              <time>Finished · {game.finished}</time>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
 
