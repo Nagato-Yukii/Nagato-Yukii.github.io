@@ -580,18 +580,12 @@ a:focus-visible {
   -webkit-overflow-scrolling: touch;
   scrollbar-color: #bcc8cd transparent;
   scrollbar-width: thin;
-  scroll-snap-type: x proximity;
 }
 
 .game-list:focus-visible {
   border-radius: 6px;
   outline: 3px solid rgba(27, 94, 122, 0.22);
   outline-offset: 4px;
-}
-
-.game-list.is-dragging,
-.game-list.is-gliding {
-  scroll-snap-type: none;
 }
 
 .game-list.is-dragging {
@@ -609,7 +603,6 @@ a:focus-visible {
   border-radius: 10px;
   background: var(--surface);
   box-shadow: var(--shadow);
-  scroll-snap-align: start;
 }
 
 .game-card img {
