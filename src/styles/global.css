@@ -577,6 +577,7 @@ a:focus-visible {
   padding: 0.2rem 0.15rem 0.9rem;
   cursor: grab;
   overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
   scrollbar-color: #bcc8cd transparent;
   scrollbar-width: thin;
   scroll-snap-type: x proximity;
@@ -588,9 +589,13 @@ a:focus-visible {
   outline-offset: 4px;
 }
 
+.game-list.is-dragging,
+.game-list.is-gliding {
+  scroll-snap-type: none;
+}
+
 .game-list.is-dragging {
   cursor: grabbing;
-  scroll-snap-type: none;
   user-select: none;
 }
 

@@ -223,27 +223,93 @@ const formatDate = (date: Date, precision: "day" | "month") =>
 
     if (gameList) {
       let dragging = false;
-      let startX = 0;
-      let startScrollLeft = 0;
+      let lastX = 0;
+      let lastTime = 0;
+      let velocity = 0;
+      let momentumFrame = 0;
+
+      const stopMomentum = () => {
+        if (momentumFrame) cancelAnimationFrame(momentumFrame);
+        momentumFrame = 0;
+        gameList.classList.remove("is-gliding");
+      };
+
+      const startMomentum = () => {
+        if (
+          Math.abs(velocity) < 0.03 ||
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ) {
+          velocity = 0;
+          return;
+        }
+
+        gameList.classList.add("is-gliding");
+        let previousTime = performance.now();
+
+        const glide = (now: number) => {
+          const elapsed = Math.min(now - previousTime, 32);
+          previousTime = now;
+          const previousScrollLeft = gameList.scrollLeft;
+
+          gameList.scrollLeft += velocity * elapsed;
+          velocity *= Math.pow(0.93, elapsed / 16.67);
+
+          const hitBoundary = gameList.scrollLeft === previousScrollLeft;
+          if (Math.abs(velocity) < 0.02 || hitBoundary) {
+            velocity = 0;
+            momentumFrame = 0;
+            gameList.classList.remove("is-gliding");
+            return;
+          }
+
+          momentumFrame = requestAnimationFrame(glide);
+        };
+
+        momentumFrame = requestAnimationFrame(glide);
+      };
 
       gameList.addEventListener("pointerdown", (event) => {
         if (event.pointerType === "touch" || event.button !== 0) return;
 
+        stopMomentum();
         dragging = true;
-        startX = event.clientX;
-        startScrollLeft = gameList.scrollLeft;
+        lastX = event.clientX;
+        lastTime = performance.now();
+        velocity = 0;
         gameList.setPointerCapture(event.pointerId);
         gameList.classList.add("is-dragging");
       });
 
       gameList.addEventListener("pointermove", (event) => {
         if (!dragging) return;
-        gameList.scrollLeft = startScrollLeft - (event.clientX - startX);
+
+        const now = performance.now();
+        const elapsed = Math.max(now - lastTime, 1);
+        const scrollDelta = lastX - event.clientX;
+        const previousScrollLeft = gameList.scrollLeft;
+
+        gameList.scrollLeft += scrollDelta;
+        const instantaneousVelocity = scrollDelta / elapsed;
+        velocity = Math.max(
+          -3.5,
+          Math.min(3.5, velocity * 0.55 + instantaneousVelocity * 0.45),
+        );
+
+        if (gameList.scrollLeft === previousScrollLeft && scrollDelta !== 0) {
+          velocity = 0;
+        }
+
+        lastX = event.clientX;
+        lastTime = now;
       });
 
-      const stopDragging = (event: PointerEvent) => {
+      const stopDragging = (event: PointerEvent, withMomentum = true) => {
         if (!dragging) return;
         dragging = false;
+
+        if (performance.now() - lastTime > 80 || !withMomentum) velocity = 0;
+        if (withMomentum) startMomentum();
+
         gameList.classList.remove("is-dragging");
         if (gameList.hasPointerCapture(event.pointerId)) {
           gameList.releasePointerCapture(event.pointerId);
@@ -251,22 +317,28 @@ const formatDate = (date: Date, precision: "day" | "month") =>
       };
 
       gameList.addEventListener("pointerup", stopDragging);
-      gameList.addEventListener("pointercancel", stopDragging);
+      gameList.addEventListener("pointercancel", (event) => {
+        stopDragging(event, false);
+      });
       gameList.addEventListener("lostpointercapture", () => {
         dragging = false;
         gameList.classList.remove("is-dragging");
       });
+
+      gameList.addEventListener("wheel", stopMomentum, { passive: true });
 
       gameList.addEventListener("keydown", (event) => {
         const distance = Math.max(220, gameList.clientWidth * 0.75);
 
         if (event.key === "ArrowRight") {
           event.preventDefault();
+          stopMomentum();
           gameList.scrollBy({ left: distance, behavior: "smooth" });
         }
 
         if (event.key === "ArrowLeft") {
           event.preventDefault();
+          stopMomentum();
           gameList.scrollBy({ left: -distance, behavior: "smooth" });
         }
       });
