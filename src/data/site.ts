@@ -82,14 +82,24 @@ export const site = {
   ],
   games: [
     {
-      title: "我们的回忆",
-      image: "/game-our-memories.png",
-      finished: "2016",
+      title: "To the Moon",
+      image: "/game-to-the-moon.png",
+      finished: "2026.7",
     },
     {
-      title: "素晴らしき日々 〜不連続存在〜（Wonderful Everyday）",
-      image: "/game-subahibi-poster.png",
-      finished: "2026.2",
+      title: "ENDER LILIES: Quietus of the Knights",
+      image: "/game-ender-lilies.png",
+      finished: "2026.7",
+    },
+    {
+      title: "Resident Evil 4 Remake",
+      image: "/game-resident-evil-4-remake.png",
+      finished: "2026.6",
+    },
+    {
+      title: "Sinisistar 2",
+      image: "/game-sinisistar-2.png",
+      finished: "2026.5",
     },
     {
       title: "Saya no Uta: The Song of Saya",
@@ -97,9 +107,39 @@ export const site = {
       finished: "2026.3",
     },
     {
+      title: "素晴らしき日々 〜不連続存在〜（Wonderful Everyday）",
+      image: "/game-subahibi-poster.png",
+      finished: "2026.2",
+    },
+    {
+      title: "MiSide",
+      image: "/game-miside.png",
+      finished: "2025.6",
+    },
+    {
+      title: "Dying Light",
+      image: "/game-dying-light.png",
+      finished: "2025.3",
+    },
+    {
+      title: "Sons of the Forest",
+      image: "/game-sons-of-the-forest.png",
+      finished: "2024.8",
+    },
+    {
+      title: "Terraria",
+      image: "/game-terraria.png",
+      finished: "2024.6",
+    },
+    {
       title: "架向星空之桥",
       image: "/game-hoshizora-no-hashi.png",
       finished: "2020.6",
+    },
+    {
+      title: "我们的回忆",
+      image: "/game-our-memories.png",
+      finished: "2016",
     },
   ],
 } as const;

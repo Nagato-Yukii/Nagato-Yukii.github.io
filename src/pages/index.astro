@@ -159,12 +159,18 @@ const formatDate = (date: Date, precision: "day" | "month") =>
     </section>
 
     <section id="games" class="section-block" aria-labelledby="games-heading">
-      <div class="section-heading">
+      <div class="section-heading game-heading">
         <h2 id="games-heading">Games Played</h2>
+        <p>Drag or swipe to browse <span aria-hidden="true">→</span></p>
       </div>
-      <div class="game-list">
+      <div
+        class="game-list"
+        role="list"
+        tabindex="0"
+        aria-label="Games played, ordered from newest completion to oldest. Drag horizontally to browse."
+      >
         {site.games.map((game) => (
-          <article class="game-card">
+          <article class="game-card" role="listitem">
             <img src={game.image} alt={`${game.title} artwork`} width="640" height="480" loading="lazy" />
             <div class="game-copy">
               <h3>{game.title}</h3>
@@ -198,6 +204,7 @@ const formatDate = (date: Date, precision: "day" | "month") =>
   <script>
     const toggle = document.querySelector<HTMLButtonElement>(".nav-toggle");
     const links = document.querySelector<HTMLElement>("#nav-links");
+    const gameList = document.querySelector<HTMLElement>(".game-list");
 
     toggle?.addEventListener("click", () => {
       const open = toggle.getAttribute("aria-expanded") === "true";
@@ -213,5 +220,56 @@ const formatDate = (date: Date, precision: "day" | "month") =>
         links.classList.remove("is-open");
       });
     });
+
+    if (gameList) {
+      let dragging = false;
+      let startX = 0;
+      let startScrollLeft = 0;
+
+      gameList.addEventListener("pointerdown", (event) => {
+        if (event.pointerType === "touch" || event.button !== 0) return;
+
+        dragging = true;
+        startX = event.clientX;
+        startScrollLeft = gameList.scrollLeft;
+        gameList.setPointerCapture(event.pointerId);
+        gameList.classList.add("is-dragging");
+      });
+
+      gameList.addEventListener("pointermove", (event) => {
+        if (!dragging) return;
+        gameList.scrollLeft = startScrollLeft - (event.clientX - startX);
+      });
+
+      const stopDragging = (event: PointerEvent) => {
+        if (!dragging) return;
+        dragging = false;
+        gameList.classList.remove("is-dragging");
+        if (gameList.hasPointerCapture(event.pointerId)) {
+          gameList.releasePointerCapture(event.pointerId);
+        }
+      };
+
+      gameList.addEventListener("pointerup", stopDragging);
+      gameList.addEventListener("pointercancel", stopDragging);
+      gameList.addEventListener("lostpointercapture", () => {
+        dragging = false;
+        gameList.classList.remove("is-dragging");
+      });
+
+      gameList.addEventListener("keydown", (event) => {
+        const distance = Math.max(220, gameList.clientWidth * 0.75);
+
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          gameList.scrollBy({ left: distance, behavior: "smooth" });
+        }
+
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          gameList.scrollBy({ left: -distance, behavior: "smooth" });
+        }
+      });
+    }
   </script>
 </BaseLayout>
