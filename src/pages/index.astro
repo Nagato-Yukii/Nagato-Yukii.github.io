@@ -27,6 +27,7 @@ const formatDate = (date: Date, precision: "day" | "month") =>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#publications">Publications</a></li>
         <li><a href="#games">Games</a></li>
+        <li><a href="#anime">Anime</a></li>
         <li><a href="#more">More</a></li>
       </ul>
     </nav>
@@ -165,6 +166,7 @@ const formatDate = (date: Date, precision: "day" | "month") =>
       </div>
       <div
         class="game-list"
+        data-drag-scroll
         role="list"
         tabindex="0"
         aria-label="Games played, ordered from newest completion to oldest. Drag horizontally to browse."
@@ -175,6 +177,29 @@ const formatDate = (date: Date, precision: "day" | "month") =>
             <div class="game-copy">
               <h3>{game.title}</h3>
               <time>{game.finished}</time>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section id="anime" class="section-block" aria-labelledby="anime-heading">
+      <div class="section-heading game-heading">
+        <h2 id="anime-heading">Anime I Like</h2>
+        <p>Drag or swipe to browse <span aria-hidden="true">→</span></p>
+      </div>
+      <div
+        class="game-list"
+        data-drag-scroll
+        role="list"
+        tabindex="0"
+        aria-label="Anime I like. Drag horizontally to browse."
+      >
+        {site.anime.map((anime) => (
+          <article class="game-card" role="listitem">
+            <img src={anime.image} alt={`${anime.title} artwork`} width="640" height="480" loading="lazy" />
+            <div class="game-copy">
+              <h3>{anime.title}</h3>
             </div>
           </article>
         ))}
@@ -204,7 +229,7 @@ const formatDate = (date: Date, precision: "day" | "month") =>
   <script>
     const toggle = document.querySelector<HTMLButtonElement>(".nav-toggle");
     const links = document.querySelector<HTMLElement>("#nav-links");
-    const gameList = document.querySelector<HTMLElement>(".game-list");
+    const dragScrollLists = document.querySelectorAll<HTMLElement>("[data-drag-scroll]");
 
     toggle?.addEventListener("click", () => {
       const open = toggle.getAttribute("aria-expanded") === "true";
@@ -221,7 +246,7 @@ const formatDate = (date: Date, precision: "day" | "month") =>
       });
     });
 
-    if (gameList) {
+    dragScrollLists.forEach((gameList) => {
       let dragging = false;
       let lastX = 0;
       let lastTime = 0;
@@ -342,6 +367,6 @@ const formatDate = (date: Date, precision: "day" | "month") =>
           gameList.scrollBy({ left: -distance, behavior: "smooth" });
         }
       });
-    }
+    });
   </script>
 </BaseLayout>

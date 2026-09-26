@@ -142,4 +142,42 @@ export const site = {
       finished: "2016",
     },
   ],
+  anime: [
+    {
+      title: "これはゾンビですか？ (Is This a Zombie?)",
+      image: "/anime-kore-wa-zombie-desu-ka.webp",
+    },
+    {
+      title: "新世紀エヴァンゲリオン (Neon Genesis Evangelion)",
+      image: "/anime-neon-genesis-evangelion.webp",
+    },
+    {
+      title: "涼宮ハルヒシリーズ (The Haruhi Suzumiya Series)",
+      image: "/anime-haruhi-suzumiya.webp",
+    },
+    {
+      title: "らき☆すた (Lucky Star)",
+      image: "/anime-lucky-star.webp",
+    },
+    {
+      title: "ギルティクラウン (Guilty Crown)",
+      image: "/anime-guilty-crown.webp",
+    },
+    {
+      title: "中二病でも恋がしたい！ (Love, Chunibyo & Other Delusions!)",
+      image: "/anime-chunibyo.webp",
+    },
+    {
+      title: "けいおん！ (K-ON!)",
+      image: "/anime-k-on.webp",
+    },
+    {
+      title: "CLANNAD",
+      image: "/anime-clannad.webp",
+    },
+    {
+      title: "ReLIFE",
+      image: "/anime-relife.webp",
+    },
+  ],
 } as const;
