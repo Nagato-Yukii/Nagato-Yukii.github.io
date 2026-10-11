@@ -142,6 +142,17 @@ export const site = {
       finished: "2016",
     },
   ],
+  activities: [
+    {
+      caption: "ICIRA 2025 · Okayama, Japan",
+      images: [
+        "/activities/icira-2025-okayama-1.webp",
+        "/activities/icira-2025-okayama-2.webp",
+        "/activities/icira-2025-okayama-3.webp",
+        "/activities/icira-2025-okayama-4.webp",
+      ],
+    },
+  ],
   anime: [
     {
       title: "これはゾンビですか？ (Is This a Zombie?)",

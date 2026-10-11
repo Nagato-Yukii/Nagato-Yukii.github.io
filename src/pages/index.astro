@@ -29,6 +29,7 @@ const formatDate = (date: Date, precision: "day" | "month") =>
         <li><a href="#games">Games</a></li>
         <li><a href="#anime">Anime</a></li>
         <li><a href="#more">More</a></li>
+        <li><a href="#activities">Activities</a></li>
       </ul>
     </nav>
   </header>
@@ -218,6 +219,25 @@ const formatDate = (date: Date, precision: "day" | "month") =>
       </div>
     </section>
 
+    <section id="activities" class="section-block" aria-labelledby="activities-heading">
+      <div class="section-heading game-heading">
+        <h2 id="activities-heading">Activities</h2>
+        <p>Photos <span aria-hidden="true">↔</span> · Activities <span aria-hidden="true">↕</span></p>
+      </div>
+      <div class="activity-feed" tabindex="0" role="region" aria-label="Recent activities, scroll vertically to browse">
+        {site.activities.map((activity) => (
+          <article class="activity-entry">
+            <div class="activity-photos" data-drag-scroll tabindex="0" role="group" aria-label={`${activity.caption}. Scroll horizontally for photos.`}>
+              {activity.images.map((image, index) => (
+                <img src={image} alt={`${activity.caption}, photo ${index + 1}`} width="1200" height="560" loading="lazy" draggable="false" />
+              ))}
+            </div>
+            <p class="activity-caption">{activity.caption}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
     <footer class="footer">
       <p>
         © {new Date().getUTCFullYear()} {site.name} · Built with care · Code adapted with reference to
@@ -249,6 +269,11 @@ const formatDate = (date: Date, precision: "day" | "month") =>
     dragScrollLists.forEach((gameList) => {
       let dragging = false;
       let lastX = 0;
+      let lastY = 0;
+      let axis: "x" | "y" | null = null;
+      const verticalFeed = gameList.closest<HTMLElement>(".activity-feed");
+      let scrollTarget = gameList;
+      let scrollProperty: "scrollLeft" | "scrollTop" = "scrollLeft";
       let lastTime = 0;
       let velocity = 0;
       let momentumFrame = 0;
@@ -274,12 +299,12 @@ const formatDate = (date: Date, precision: "day" | "month") =>
         const glide = (now: number) => {
           const elapsed = Math.min(now - previousTime, 32);
           previousTime = now;
-          const previousScrollLeft = gameList.scrollLeft;
+          const previousScrollLeft = scrollTarget[scrollProperty];
 
-          gameList.scrollLeft += velocity * elapsed;
+          scrollTarget[scrollProperty] += velocity * elapsed;
           velocity *= Math.pow(0.93, elapsed / 16.67);
 
-          const hitBoundary = gameList.scrollLeft === previousScrollLeft;
+          const hitBoundary = scrollTarget[scrollProperty] === previousScrollLeft;
           if (Math.abs(velocity) < 0.02 || hitBoundary) {
             velocity = 0;
             momentumFrame = 0;
@@ -299,6 +324,10 @@ const formatDate = (date: Date, precision: "day" | "month") =>
         stopMomentum();
         dragging = true;
         lastX = event.clientX;
+        lastY = event.clientY;
+        axis = verticalFeed ? null : "x";
+        scrollTarget = gameList;
+        scrollProperty = "scrollLeft";
         lastTime = performance.now();
         velocity = 0;
         gameList.setPointerCapture(event.pointerId);
@@ -310,21 +339,32 @@ const formatDate = (date: Date, precision: "day" | "month") =>
 
         const now = performance.now();
         const elapsed = Math.max(now - lastTime, 1);
-        const scrollDelta = lastX - event.clientX;
-        const previousScrollLeft = gameList.scrollLeft;
+        const deltaX = lastX - event.clientX;
+        const deltaY = lastY - event.clientY;
+        if (!axis) {
+          if (Math.max(Math.abs(deltaX), Math.abs(deltaY)) < 5) return;
+          axis = Math.abs(deltaY) > Math.abs(deltaX) ? "y" : "x";
+          if (axis === "y" && verticalFeed) {
+            scrollTarget = verticalFeed;
+            scrollProperty = "scrollTop";
+          }
+        }
+        const scrollDelta = axis === "y" ? deltaY : deltaX;
+        const previousScrollLeft = scrollTarget[scrollProperty];
 
-        gameList.scrollLeft += scrollDelta;
+        scrollTarget[scrollProperty] += scrollDelta;
         const instantaneousVelocity = scrollDelta / elapsed;
         velocity = Math.max(
           -3.5,
           Math.min(3.5, velocity * 0.55 + instantaneousVelocity * 0.45),
         );
 
-        if (gameList.scrollLeft === previousScrollLeft && scrollDelta !== 0) {
+        if (scrollTarget[scrollProperty] === previousScrollLeft && scrollDelta !== 0) {
           velocity = 0;
         }
 
         lastX = event.clientX;
+        lastY = event.clientY;
         lastTime = now;
       });
 
