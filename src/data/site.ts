@@ -144,6 +144,17 @@ export const site = {
   ],
   activities: [
     {
+      caption: "Cosplay · 涼宮ハルヒシリーズ (The Haruhi Suzumiya Series) · October 2026 · Shanghai, China",
+      images: [
+        "/activities/haruhi-group-cosplay.webp",
+        "/activities/haruhi-group-anime.webp",
+        "/activities/haruhi-rehearsal-cosplay.webp",
+        "/activities/haruhi-rehearsal-anime.webp",
+        "/activities/haruhi-i-cosplay.webp",
+        "/activities/haruhi-i-anime.webp",
+      ],
+    },
+    {
       caption: "ICIRA 2025 · Okayama, Japan",
       images: [
         "/activities/icira-2025-okayama-1.webp",

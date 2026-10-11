@@ -643,6 +643,7 @@ a:focus-visible {
 
 .activity-feed {
   --activity-row-height: 264px;
+  --activity-caption-height: 48px;
   --activity-gap: 16px;
   display: flex;
   flex-direction: column;
@@ -666,7 +667,7 @@ a:focus-visible {
 .activity-photos {
   display: flex;
   gap: 8px;
-  height: calc(var(--activity-row-height) - 48px);
+  height: calc(var(--activity-row-height) - var(--activity-caption-height));
   overflow-x: auto;
   overflow-y: hidden;
   cursor: grab;
@@ -706,7 +707,10 @@ a:focus-visible {
 }
 
 @media (max-width: 600px) {
-  .activity-feed { --activity-row-height: 216px; }
+  .activity-feed {
+    --activity-row-height: 260px;
+    --activity-caption-height: 92px;
+  }
 }
 
 .section-empty {
