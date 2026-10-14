@@ -28,8 +28,8 @@ const formatDate = (date: Date, precision: "day" | "month") =>
         <li><a href="#publications">Publications</a></li>
         <li><a href="#games">Games</a></li>
         <li><a href="#anime">Anime</a></li>
-        <li><a href="#more">More</a></li>
         <li><a href="#activities">Activities</a></li>
+        <li><a href="#more">More</a></li>
       </ul>
     </nav>
   </header>
@@ -207,18 +207,6 @@ const formatDate = (date: Date, precision: "day" | "month") =>
       </div>
     </section>
 
-    <section id="more" class="section-block" aria-labelledby="more-heading">
-      <div class="section-heading">
-        <h2 id="more-heading">More</h2>
-      </div>
-      <div class="more-grid">
-        <div>
-          <h3>Still to come</h3>
-          <p>Contact details, a CV, awards, or anything else that does not fit above.</p>
-        </div>
-      </div>
-    </section>
-
     <section id="activities" class="section-block" aria-labelledby="activities-heading">
       <div class="section-heading game-heading">
         <h2 id="activities-heading">Activities</h2>
@@ -235,6 +223,18 @@ const formatDate = (date: Date, precision: "day" | "month") =>
             <p class="activity-caption">{activity.caption}</p>
           </article>
         ))}
+      </div>
+    </section>
+
+    <section id="more" class="section-block" aria-labelledby="more-heading">
+      <div class="section-heading">
+        <h2 id="more-heading">More</h2>
+      </div>
+      <div class="more-grid">
+        <div>
+          <h3>Still to come</h3>
+          <p>Contact details, a CV, awards, or anything else that does not fit above.</p>
+        </div>
       </div>
     </section>
 
