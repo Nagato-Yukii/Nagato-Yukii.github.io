@@ -144,6 +144,10 @@ export const site = {
   ],
   activities: [
     {
+      caption: "CIIIF 2026 · Shanghai, China",
+      images: ["/activities/ciiif-2026-shanghai.webp"],
+    },
+    {
       caption: "Cosplay · 涼宮ハルヒシリーズ (The Haruhi Suzumiya Series) · October 2026 · Shanghai, China",
       images: [
         "/activities/haruhi-group-cosplay.webp",
