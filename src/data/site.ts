@@ -144,7 +144,7 @@ export const site = {
   ],
   activities: [
     {
-      caption: "CIIIF 2026 · Shanghai, China",
+      caption: "CIIF 2026 · Shanghai, China",
       images: ["/activities/ciiif-2026-shanghai.webp"],
     },
     {
